@@ -316,7 +316,9 @@ function Sheet(sheet) {
     var dataRange = sheet.getRange(2, 1, sheet.getLastRow(), sheet.getLastColumn());
     this.data = dataRange.getValues();
   } else {
-    sheet.getRange(1, 1, 1, 7).setValues(["id", "md5", "time", "title", "gameid", "gamemd5", "gametitle"]);
+    sheet.getRange(1, 1, 1, 7).setValues([
+      ["id", "md5", "time", "title", "gameid", "gamemd5", "gametitle"]
+    ]);
     this.data = [];
   }
 }
