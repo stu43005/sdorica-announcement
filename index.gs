@@ -54,11 +54,14 @@ function doCheck() {
       }
       
       for (var j = 0; j < groups.length; j++) {
+        var curGroupTitle = groups[j][0];
+        var nextGroupTitle = groups.length > j + 1 ? " (" + groups[j + 1][0] + ")" : "";
+        var combineGroupTitle = curGroupTitle + nextGroupTitle;
         var groupcontent = groups[j].join("\n").trim();
         var md5str2 = md5(groupcontent);
 
         var sheetitem2 = sheetdata.find(function (d, i) {
-          return d[0] == item._id && d[3] == groups[j][0];
+          return d[0] == item._id && (d[3] == combineGroupTitle || (d[3] == curGroupTitle && d[1] == md5str2));
         });
         
         if (!sheetitem2 || sheetitem2.data[1] != md5str2) {
@@ -76,7 +79,7 @@ function doCheck() {
             makeWebhook(webhookUrl, payload2);
           }
           
-          var newdata2 = [item._id, md5str2, new Date(), groups[j][0]];
+          var newdata2 = [item._id, md5str2, new Date(), combineGroupTitle];
           Logger.log("newdata: " + JSON.stringify(newdata2));
           if (!sheetitem2) {
             sheetdata.insertNewRow(newdata2);
