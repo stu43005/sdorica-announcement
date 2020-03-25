@@ -239,7 +239,7 @@ function timestamp2Date(timestamp) {
 }
 
 function cat2text(cat) {
-  switch(cat) {
+  switch (cat) {
     case "event":
       return "活動";
     case "update":
@@ -254,7 +254,7 @@ function cat2text(cat) {
 }
 
 function cat2color(cat) {
-  switch(cat) {
+  switch (cat) {
     case "event":
       return "15253589";
     case "update":
@@ -294,7 +294,7 @@ function getJson(url) {
 function makeWebhook(url, data) {
   var options = {
     'method': 'post',
-    "contentType" : "application/json",
+    "contentType": "application/json",
     'payload': JSON.stringify(data)
   };
 
@@ -303,10 +303,10 @@ function makeWebhook(url, data) {
 }
 
 function md5(str) {
-  return Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, str).reduce(function(str,chr){
+  return Utilities.computeDigest(Utilities.DigestAlgorithm.MD5, str).reduce(function (str, chr) {
     chr = (chr < 0 ? chr + 256 : chr).toString(16);
-    return str + (chr.length==1?'0':'') + chr;
-  },'');
+    return str + (chr.length == 1 ? '0' : '') + chr;
+  }, '');
 }
 
 function Sheet(sheet) {
